@@ -1,0 +1,10 @@
+@use 'helpers/' as *;
+
+body{
+    @include fluid-text(18, 24);
+
+    letter-spacing: -0.3em;
+    font-family: var(--font-family-base);
+    color: var( --color-grey-50);
+    background-color: var(--color-dark);
+}
