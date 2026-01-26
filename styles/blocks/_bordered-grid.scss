@@ -1,0 +1,60 @@
+@use '../helpers/' as *;
+
+.bordered-grid{
+    --columns: 1;
+    --itempaddingY: #{fluid(80, 40)};
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+
+    &--2-cols{
+        --columns: 2;
+
+        --itempaddingX: #{rem(50)};
+
+        @include laptop{
+            --itempaddingX: #{rem(30)};
+        }
+    }
+
+    &--3-cols{
+        --columns: 3;  
+        --itempaddingX: #{rem(50)};
+
+        @include laptop{
+            --itempaddingX: #{rem(40)};
+        }
+
+        @include tablet-above{
+            .bordered-grid__item{
+            &:nth-child(3n - 2),    // 1, 4, 7, ... элементы 1й колонки
+            &:nth-child(3n - 1){    // 2, 5, 8, ... элементы 2й колонки
+                padding-right: var(--itempaddingX);
+                border-right: var(--border);
+            }
+
+            &:nth-child(3n -1){     // 2, 5, 8, ... элементы 2й колонки
+                @include full-vw-centered-line(bottom); 
+            }
+
+            &:nth-child(3n - 1),    // 2, 5, 8, ... элементы 2й колонки
+            &:nth-child(3n){        // 3, 6, 9, ... элементы 3й колонки
+                padding-left: var(--itempaddingX);
+            }
+        }
+        }
+
+        @include tablet{
+            --columns: 1;
+
+            .bordered-grid__item:not(:last-child){
+                border-bottom: var(--border);
+            }
+        }
+
+    }
+
+    &__item{
+        padding-block: var(--itempaddingY);
+    }
+}
