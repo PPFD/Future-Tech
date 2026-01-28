@@ -9,11 +9,37 @@
 
     &--2-cols{
         --columns: 2;
-
-        --itempaddingX: #{rem(50)};
+        --itempaddingX: #{rem(80)};
 
         @include laptop{
-            --itempaddingX: #{rem(30)};
+            --itempaddingX: #{rem(50)};
+        }
+
+        @include mobile{
+            --columns: 1;
+
+            .bordered-grid__item:not(:last-child){
+                border-bottom: var(--border);
+            }
+        }
+
+        @include mobile-above{
+            .bordered-grid__item{
+                &:nth-child(odd){
+                    padding-right: var(--itempaddingX);
+                    border-right: var(--border);
+                }
+
+                &:nth-child(even){
+                    @include full-vw-centered-line(
+                        bottom,
+                        auto,
+                        100%,
+                        50%
+                    );
+                    padding-left: var(--itempaddingX);
+                }
+            }
         }
     }
 
