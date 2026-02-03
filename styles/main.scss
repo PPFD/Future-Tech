@@ -8,6 +8,7 @@
 @use 'blocks/header';
 @use 'blocks/burger-button';
 @use 'blocks/button';
+@use 'blocks/expandable-content';
 @use 'blocks/icon';
 @use 'blocks/logo';
 @use 'blocks/badge';
@@ -47,6 +48,9 @@
 
 @use 'blocks/video-player';
 @use 'blocks/video-card';
+
+@use 'blocks/table-of-contents';
+@use 'blocks/blog-details';
 
 .header,
 main > *:not(:last-child),
