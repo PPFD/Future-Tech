@@ -47,27 +47,33 @@
         --columns: 3;  
         --itempaddingX: #{rem(50)};
 
+        column-gap: calc(var(--itempaddingX) * 2);
+
         @include laptop{
             --itempaddingX: #{rem(40)};
         }
 
         @include tablet-above{
             .bordered-grid__item{
-            &:nth-child(3n - 2),    // 1, 4, 7, ... элементы 1й колонки
-            &:nth-child(3n - 1){    // 2, 5, 8, ... элементы 2й колонки
-                padding-right: var(--itempaddingX);
-                border-right: var(--border);
-            }
+                &:nth-child(3n - 2),    // 1, 4, 7, ... элементы 1й колонки
+                &:nth-child(3n - 1){    // 2, 5, 8, ... элементы 2й колонки
+                    position: relative;
 
-            &:nth-child(3n -1){     // 2, 5, 8, ... элементы 2й колонки
-                @include full-vw-centered-line(bottom); 
-            }
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: calc(100% + var(--itempaddingX));
+                        width: rem(1);
+                        height: 100%;
+                        background-color: var(--color-dark-15);
+                    }
+                }
 
-            &:nth-child(3n - 1),    // 2, 5, 8, ... элементы 2й колонки
-            &:nth-child(3n){        // 3, 6, 9, ... элементы 3й колонки
-                padding-left: var(--itempaddingX);
+                &:nth-child(3n -1){     // 2, 5, 8, ... элементы 2й колонки
+                    @include full-vw-centered-line(bottom); 
+                }
             }
-        }
         }
 
         @include tablet{
